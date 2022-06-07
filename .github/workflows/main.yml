@@ -72,4 +72,4 @@ jobs:
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
             whoami
-            ls -al
+            ls -al  
