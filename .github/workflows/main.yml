@@ -3,8 +3,8 @@ name: CI
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "master" branch
-  push:
-    branches: [ "master" ]
+#  push:
+#    branches: [ "master" ]
   pull_request:
     branches: [ "master" ]
 
@@ -76,4 +76,4 @@ jobs:
             docker rm -f $(docker container ls -f "name=kotlin-kafka" -q)
             docker rmi -f menofdocker/kotlin-kafka:latest
             docker pull menofdocker/kotlin-kafka:latest
-            docker run -d --name kotlin-kafka -p 30010:8080 --add-host=host.docker.internal:host-gateway --restart unless-stopped menofdocker/kotlin-kafka:latest
+            docker run -d --name kotlin-kafka -p 30010:20010 --add-host=host.docker.internal:host-gateway --restart unless-stopped menofdocker/kotlin-kafka:latest
