@@ -14,7 +14,7 @@ import java.io.Serializable
 
 @EnableKafka
 @Configuration // @Configuration 어노테이션을 사용하여 설정파일임을 명시하고 bean 등록이 가능하게 한다
-class KafkaProducerConfig {
+class KafkaProducerConfiguration {
 
     @Value("\${spring.kafka.producer.bootstrap-servers}")
     lateinit var bootstrapServer: String
