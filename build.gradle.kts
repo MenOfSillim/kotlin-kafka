@@ -28,7 +28,8 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-reflect") // reflect 기능 : https://sabarada.tistory.com/190
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // Kotlin
 
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb")
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa") // JPA, mongo entity의 다양한 annotation
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb") // mongoDB
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 

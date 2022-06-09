@@ -1,6 +1,6 @@
 package com.kafka.kotlin.configuration
 
-import com.kafka.kotlin.model.Message
+import com.kafka.kotlin.model.MessageDto
 import org.apache.kafka.clients.producer.ProducerConfig
 import org.apache.kafka.common.serialization.StringSerializer
 import org.springframework.beans.factory.annotation.Value
@@ -20,8 +20,8 @@ class KafkaProducerConfiguration {
     lateinit var bootstrapServer: String
 
     @Bean
-    fun kafkaTemplate(): KafkaTemplate<String, Message> {
-        val factory = DefaultKafkaProducerFactory<String, Message>(producerConfigs())
+    fun kafkaTemplate(): KafkaTemplate<String, MessageDto> {
+        val factory = DefaultKafkaProducerFactory<String, MessageDto>(producerConfigs())
         return KafkaTemplate(factory)
     }
 

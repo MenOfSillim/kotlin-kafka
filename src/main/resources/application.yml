@@ -13,4 +13,10 @@ spring:
       group-id: common-listener-id
   data:
     mongodb:
-      uri: mongodb://docker:mongopw@localhost:55000
+#      uri: mongodb://david:900807@localhost:mongodb:net:27017/kafka?ssl=true&authSource=admin&authMechanism=SCRAM-SHA-1
+      username: menofsillim
+      password: sillim123!
+      authentication-database: kafka
+      host: localhost
+      database: kafka
+      port: 27017

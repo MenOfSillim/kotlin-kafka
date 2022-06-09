@@ -33,7 +33,7 @@ docker exec -it kafka-mongo bash
 # mongo terminal connect
 mongo
 
-# admin DB 사용, 없으면 생성 
+# kafka 사용, 없으면 생성 
 use admin
 
 # 현재 사용중인 DB 정보 조회
@@ -52,6 +52,11 @@ db.dropUser("asdf")
 # 계정 정보 조회
 db.getUsers()
 
+# user collection에 데이터 삽입
+db.user.insert([{"userId":"1","nickname":"MenOfSillim","text":"Kafka Produce Test","createdDate":"2022-06-10T03:22:39.926650"}]);
+
+# collection 값 확인
+db.user.find()
 ```
 ## MongoDB 참고 사이트
 https://velopert.com/457

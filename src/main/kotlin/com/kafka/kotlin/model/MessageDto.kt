@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import io.swagger.annotations.ApiModelProperty
 import java.time.LocalDateTime
 
-data class Message(
-    @ApiModelProperty(value = "저자", example = "MenOfSillim")
-    @JsonProperty("author") val author: String?,
+data class MessageDto(
+    @ApiModelProperty(value = "닉네임", example = "MenOfSillim")
+    @JsonProperty("nickname") val nickname: String?,
 
     @ApiModelProperty(value = "내용", example = "Kafka Produce Test")
     @JsonProperty("text") val text: String?,
