@@ -11,3 +11,6 @@ spring:
     consumer:
       bootstrap-servers: localhost:9092
       group-id: common-listener-id
+  data:
+    mongodb:
+      uri: mongodb://docker:mongopw@localhost:55000

@@ -20,3 +20,38 @@ docker push menofdocker/kotlin-kafka
 # 도커 등 세팅 완료
 # https://kafka.menofsillim.club/swagger-ui/index.html#/main-controller
 ```
+
+# MongoDB 설정
+```shell
+# ================= mongoDB 설정 ===================
+# mongo image pull 이후 -> image 구동
+docker run --name kafka-mongo -v ~/data:/data/db -d -p 27017:27017 mongo
+
+# mongo container connect
+docker exec -it kafka-mongo bash
+
+# mongo terminal connect
+mongo
+
+# admin DB 사용, 없으면 생성 
+use admin
+
+# 현재 사용중인 DB 정보 조회
+db
+
+# DB 리스트 확인
+show dbs
+
+# 유저 생성
+db.createUser( { user: "asdf", pwd: "asdf", roles: ["root"] }) # root 계정
+db.createUser( { user: "asdf", pwd: "asdf", roles: ["dbOwner"] }) # 일반 계정
+
+# 계정 삭제
+db.dropUser("asdf")
+
+# 계정 정보 조회
+db.getUsers()
+
+```
+## MongoDB 참고 사이트
+https://velopert.com/457
