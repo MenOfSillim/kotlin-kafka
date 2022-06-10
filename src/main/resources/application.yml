@@ -1,22 +1,7 @@
-server:
-  port: 20010
-
 spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher # swagger error 해결, 버전 문제
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-    consumer:
-      bootstrap-servers: localhost:9092
-      group-id: common-listener-id
-  data:
-    mongodb:
-#      uri: mongodb://david:900807@localhost:mongodb:net:27017/kafka?ssl=true&authSource=admin&authMechanism=SCRAM-SHA-1
-      username: menofsillim
-      password: sillim123!
-      authentication-database: kafka
-      host: localhost
-      database: kafka
-      port: 27017
+
+server:
+  port: 20010

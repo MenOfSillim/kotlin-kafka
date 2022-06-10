@@ -60,3 +60,22 @@ db.user.find()
 ```
 ## MongoDB 참고 사이트
 https://velopert.com/457
+
+## 홈서버 설정
+```shell
+# MongoDB 설정
+
+docker pull mongo
+docker tag mongo menofdocker/mongo:latest
+docker push menofdocker/mongo:latest
+
+docker run --name kafka-mongo -v /mnt/storage1/db-data/mongo:/data/db -d -p 27017:27017 --add-host=host.docker.internal:host-gateway  menofdocker/mongo
+docker exec -it kafka-mongo bash
+
+mongo
+use kafka
+db.createUser({ user: "menofsillim", pwd: "sillim123!", roles: [ "dbAdmin" ] })
+db.createCollection("user")
+
+
+```

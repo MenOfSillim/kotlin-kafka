@@ -29,4 +29,3 @@ class User private constructor(
     }
 }
 
-//{"userId":"1","nickname":"MenOfSillim","text":"Kafka Produce Test","createdDate":"2022-06-10T03:22:39.926650"}
