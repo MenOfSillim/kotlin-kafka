@@ -62,8 +62,8 @@ db.user.find()
 https://velopert.com/457
 
 ## 홈서버 설정
+### MongoDB 설정
 ```shell
-# MongoDB 설정
 
 docker pull mongo
 docker tag mongo menofdocker/mongo:latest
@@ -76,6 +76,46 @@ mongo
 use kafka
 db.createUser({ user: "menofsillim", pwd: "sillim123!", roles: [ "dbAdmin" ] })
 db.createCollection("user")
-
-
 ```
+
+### Kafka 설치
+```shell
+# JDK 11 설치
+
+
+# zookeeper download
+wget https://dlcdn.apache.org/zookeeper/zookeeper-3.8.0/apache-zookeeper-3.8.0-bin.tar.gz
+tar -xvf apache-zookeeper-3.8.0-bin.tar.gz
+
+# kafka download
+wget https://dlcdn.apache.org/kafka/3.2.0/kafka_2.13-3.2.0.tgz
+tar -xvf kafka_2.13-3.2.0.tgz
+
+# zookeeper 설정 세팅
+cd conf
+cp zoo_sample.cfg zoo.cfg
+
+# ================= 실행 =================
+# 1. foreground 모드
+/home/david/kafka/apache-zookeeper-3.8.0-bin/bin/zkServer.sh start-foreground
+/home/david/kafka/kafka_2.13-3.2.0/bin/kafka-server-start.sh /home/david/kafka/kafka_2.13-3.2.0/config/server.properties 
+
+# 2. background 모드
+/home/david/kafka/apache-zookeeper-3.8.0-bin/bin/zkServer.sh start
+/home/david/kafka/kafka_2.13-3.2.0/bin/kafka-server-start.sh -daemon /home/david/kafka/kafka_2.13-3.2.0/config/server.properties
+
+# ================= 중지 =================
+# 2. background 모드
+/home/david/kafka/apache-zookeeper-3.8.0-bin/bin/zkServer.sh stop
+/home/david/kafka/kafka_2.13-3.2.0/bin/kafka-server-stop.sh -daemon /home/david/kafka/kafka_2.13-3.2.0/config/server.properties
+
+# 토픽 생성
+bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092
+
+# 토픽 확인
+/home/david/kafka/kafka_2.13-3.2.0/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
+
+sudo docker logs --tail 10 -f  kafka-kotlin
+```
+
+https://twofootdog.tistory.com/89
