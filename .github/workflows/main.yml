@@ -71,7 +71,8 @@ jobs:
           key: ${{ secrets.REMOTE_SSH_KEY }}
           port: ${{ secrets.REMOTE_SSH_PORT }}
           script: |
-            aa-remove-unknown
+            sudo aa-remove-unknown
+            900807
             docker rm -f $(docker container ls -f "name=kotlin-kafka" -q)
             docker rmi -f menofdocker/kotlin-kafka:latest
             docker pull menofdocker/kotlin-kafka:latest
