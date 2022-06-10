@@ -23,9 +23,16 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.springframework.kafka:spring-kafka") // Kafka
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin") // 기본 생성자 deserilize가 힘들어서 모듈 추가 : https://traeper.tistory.com/entry/Kotlin-jackson-module-kotlin
+    implementation("org.jetbrains.kotlin:kotlin-reflect") // reflect 기능 : https://sabarada.tistory.com/190
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8") // Kotlin
+
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa") // JPA, mongo entity의 다양한 annotation
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb") // mongoDB
+
+    annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
+
 
     // Open-API : Swagger
     implementation("io.springfox:springfox-swagger-ui:3.0.0")
@@ -49,3 +56,4 @@ tasks.withType<KotlinCompile> {
 tasks.withType<Test> {
     useJUnitPlatform()
 }
+

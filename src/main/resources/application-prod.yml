@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: prod
+  kafka:
+    producer:
+      bootstrap-servers: host.docker.internal:9092
+    consumer:
+      bootstrap-servers: host.docker.internal:9092
+      group-id: common-listener-id
+  data:
+    mongodb:
+      username: menofsillim
+      password: sillim123!
+      authentication-database: kafka
+      host: host.docker.internal
+      database: kafka
+      port: 27017
+

@@ -1,0 +1,19 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+    consumer:
+      bootstrap-servers: localhost:9092
+      group-id: common-listener-id
+  data:
+    mongodb:
+      username: menofsillim
+      password: sillim123!
+      authentication-database: kafka
+      host: localhost
+      database: kafka
+      port: 27017
+
