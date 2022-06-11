@@ -8,6 +8,7 @@ spring:
     consumer:
       bootstrap-servers: host.docker.internal:19092
       group-id: common-listener-id
+    bootstrap-servers: host.docker.internal:19092
   data:
     mongodb:
       username: menofsillim

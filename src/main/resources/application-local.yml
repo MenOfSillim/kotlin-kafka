@@ -8,6 +8,7 @@ spring:
     consumer:
       bootstrap-servers: localhost:9092
       group-id: common-listener-id
+    bootstrap-servers: localhost:19092
   data:
     mongodb:
       username: menofsillim
