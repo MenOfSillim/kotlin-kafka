@@ -4,9 +4,9 @@ spring:
       on-profile: prod
   kafka:
     producer:
-      bootstrap-servers: host.docker.internal:9092
+      bootstrap-servers: host.docker.internal:19092
     consumer:
-      bootstrap-servers: host.docker.internal:9092
+      bootstrap-servers: host.docker.internal:19092
       group-id: common-listener-id
   data:
     mongodb:
