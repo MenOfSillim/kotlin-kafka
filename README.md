@@ -115,7 +115,7 @@ bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localh
 # 토픽 확인
 /home/david/kafka/kafka_2.13-3.2.0/bin/kafka-topics.sh --list --bootstrap-server localhost:9092
 
-sudo docker logs --tail 10 -f  kafka-kotlin
+docker run -d --name kotlin-kafka -p 30010:20010 --add-host=host.docker.internal:host-gateway menofdocker/kotlin-kafka:latest | docker logs --tail 10 -f kotlin-kafka
 ```
 
 https://twofootdog.tistory.com/89
