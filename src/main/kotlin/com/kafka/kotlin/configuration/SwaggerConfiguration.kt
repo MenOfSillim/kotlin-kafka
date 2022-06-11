@@ -1,5 +1,6 @@
 package com.kafka.kotlin.configuration
 
+import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.servlet.config.annotation.EnableWebMvc
@@ -14,8 +15,12 @@ import springfox.documentation.spring.web.plugins.Docket
 @EnableWebMvc
 class SwaggerConfiguration {
 
+    @Value("\${spring.exposedPort}")
+    lateinit var exposedPort: String
+
     @Bean
     fun api(): Docket = Docket(DocumentationType.SWAGGER_2)
+        .host("localhost:${exposedPort}")
         .apiInfo(getApiInfo())
         .select()
         .apis(RequestHandlerSelectors.basePackage("com.kafka.kotlin.controller"))
