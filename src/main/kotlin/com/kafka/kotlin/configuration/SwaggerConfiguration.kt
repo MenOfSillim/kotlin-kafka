@@ -8,8 +8,10 @@ import springfox.documentation.builders.ApiInfoBuilder
 import springfox.documentation.builders.RequestHandlerSelectors
 import springfox.documentation.service.ApiInfo
 import springfox.documentation.service.Contact
+import springfox.documentation.service.Server
 import springfox.documentation.spi.DocumentationType
 import springfox.documentation.spring.web.plugins.Docket
+import java.util.*
 
 @Configuration
 @EnableWebMvc
@@ -20,7 +22,16 @@ class SwaggerConfiguration {
 
     @Bean
     fun api(): Docket = Docket(DocumentationType.SWAGGER_2)
-        .host("http://localhost:${exposedPort}")
+        .servers(
+            Server(
+                "local",
+                "http://localhost:${exposedPort}",
+                "for local usages",
+                Collections.emptyList(),
+                Collections.emptyList()
+            )
+        )
+//        .host("localhost:")
         .apiInfo(getApiInfo())
         .select()
         .apis(RequestHandlerSelectors.basePackage("com.kafka.kotlin.controller"))
