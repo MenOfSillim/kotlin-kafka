@@ -17,5 +17,5 @@ spring:
       host: host.docker.internal
       database: kafka
       port: 27017
-  exposedPort: 30010
+  exposedHost: kafka.menofsillim.club
 

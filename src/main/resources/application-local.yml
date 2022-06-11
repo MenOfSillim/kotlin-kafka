@@ -17,5 +17,5 @@ spring:
       host: localhost
       database: kafka
       port: 27017
-  exposedPort: 20010
+  exposedHost: localhost:20010
 

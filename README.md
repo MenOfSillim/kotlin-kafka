@@ -119,3 +119,6 @@ docker run -d --name kotlin-kafka -p 30010:20010 --add-host=host.docker.internal
 ```
 
 https://twofootdog.tistory.com/89
+
+- Application in Docker & Kafka Resolve Conflict
+https://www.confluent.io/ko-kr/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/#adding-new-listener
