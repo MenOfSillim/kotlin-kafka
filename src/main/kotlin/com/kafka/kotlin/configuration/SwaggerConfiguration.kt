@@ -20,7 +20,7 @@ class SwaggerConfiguration {
 
     @Bean
     fun api(): Docket = Docket(DocumentationType.SWAGGER_2)
-        .host("localhost:${exposedPort}")
+        .host("http://localhost:${exposedPort}")
         .apiInfo(getApiInfo())
         .select()
         .apis(RequestHandlerSelectors.basePackage("com.kafka.kotlin.controller"))

@@ -81,7 +81,7 @@ jobs:
             fi
             
             echo "Remove Image ID"
-            if [ $(docker images -f "reference=${{ secrets.DOCKERHUB_USERNAME }}/kotlin-kafka" -q) | awk '{print length}' -gt 1 ]
+            if [ $(docker images -f "reference=**/kotlin-kafka" -q) | awk '{print length}' -gt 1 ]
             then
               echo "Image Exist"
               docker rmi -f menofdocker/kotlin-kafka:latest
