@@ -25,7 +25,7 @@ docker push menofdocker/kotlin-kafka
 ```shell
 # ================= mongoDB 설정 ===================
 # mongo image pull 이후 -> image 구동
-docker run --name kafka-mongo -v ~/data:/data/db -d -p 27017:27017 mongo
+docker run --name kafka-mongo -v /mnt/storage1/db-data/mongo:/data/db -d -p 27017:27017 --add-host=host.docker.internal:host-gateway  menofdocker/mongo
 
 # mongo container connect
 docker exec -it kafka-mongo bash
@@ -69,7 +69,11 @@ docker pull mongo
 docker tag mongo menofdocker/mongo:latest
 docker push menofdocker/mongo:latest
 
-docker run --name kafka-mongo -v /mnt/storage1/db-data/mongo:/data/db -d -p 27017:27017 --add-host=host.docker.internal:host-gateway  menofdocker/mongo
+docker run --name kafka-mongo \
+          -v /mnt/storage1/db-data/mongo:/data/db \
+          -d -p 27017:27017 \
+          --add-host=host.docker.internal:host-gateway \
+          --restart unless-stopped menofdocker/mongo
 docker exec -it kafka-mongo bash
 
 mongo
@@ -107,7 +111,7 @@ cp zoo_sample.cfg zoo.cfg
 # ================= 중지 =================
 # 2. background 모드
 /home/david/kafka/apache-zookeeper-3.8.0-bin/bin/zkServer.sh stop
-/home/david/kafka/kafka_2.13-3.2.0/bin/kafka-server-stop.sh -daemon /home/david/kafka/kafka_2.13-3.2.0/config/server.properties
+/home/david/kafka/kafka_2.13-3.2.0/bin/kafka-server-stop.sh -daemon
 
 # 토픽 생성
 bin/kafka-topics.sh --create --topic quickstart-events --bootstrap-server localhost:9092
@@ -122,3 +126,61 @@ https://twofootdog.tistory.com/89
 
 - Application in Docker & Kafka Resolve Conflict
 https://www.confluent.io/ko-kr/blog/kafka-client-cannot-connect-to-broker-on-aws-on-docker-etc/#adding-new-listener
+
+```shell
+
+docker run -d --name youtube -p30002:3000 --restart unless-stopped kyondoku/youtube
+docker run --name kafka-mongo \
+>           -v /mnt/storage1/db-data/mongo:/data/db \
+>           -d -p 27017:27017 \
+>           --add-host=host.docker.internal:host-gateway \
+>           --restart unless-stopped menofdocker/mongo
+```
+
+```shell
+# 컨테이너 작동 불가 이슈 해결
+sudo systemctl stop apparmor
+sudo systemctl disable apparmor
+sudo apt remove --assume-yes --purge apparmor
+# 리부팅 이후 도커 몇 개 설정 없음, docker pull로 없는 부분 다시 가져와야함
+
+# zookeeper 자동 로딩 이슈 해결
+sudo vi /etc/systemd/system/zookeeper.service
+After=network.target
+
+[Service]
+Type=forking
+User=david
+Group=david
+SyslogIdentifier=zookeeper-server
+WorkingDirectory=/home/david/kafka/zookeeper/
+Restart=always
+RestartSec=0s
+ExecStart=/home/david/kafka/zookeeper/bin/zkServer.sh start
+ExecStop=/home/david/kafka/zookeeper/bin/zkServer.sh stop
+
+[Install]
+WantedBy=multi-user.target
+~                          
+sudo vi /etc/systemd/system/kafka.service
+[Unit]
+Description=kafka
+Requires=network.target remote-fs.target zookeeper.service
+After=network.target remote-fs.target zookeeper.service
+
+[Service]
+Type=forking
+User=david
+Group=david
+SyslogIdentifier=kafka
+WorkingDirectory=/home/david/kafka/kafka-broker/
+Environment='KAFKA_HEAP_OPTS=-Xms500m -Xmx500m'
+ExecStart=/home/david/kafka/kafka-broker/bin/kafka-server-start.sh -daemon /home/david/kafka/kafka-broker/config/server.properties
+ExecStop=/home/david/kafka/kafka-broker/bin/kafka-server-stop.sh /home/david/kafka/kafka-broker/config/server.properties
+Restart=on-abnormal
+
+[Install]
+WantedBy=multi-user.target
+~                                                                                                                                                                                                                 
+~                                             
+```
