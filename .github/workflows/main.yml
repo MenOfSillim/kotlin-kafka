@@ -96,4 +96,4 @@ jobs:
             docker run -d --name kotlin-kafka \
                        -p 30010:20010 \
                        --add-host=host.docker.internal:host-gateway \
-                       --restart unless-stopped menofdocker/kotlin-kafka:latest
+                       --restart unless-stopped menofdocker/kotlin-kafka
