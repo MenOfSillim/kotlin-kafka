@@ -180,7 +180,7 @@ ExecStop=/home/david/kafka/kafka-broker/bin/kafka-server-stop.sh /home/david/kaf
 Restart=on-abnormal
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target 
 ~                                                                                                                                                                                                                 
 ~                                             
 ```
