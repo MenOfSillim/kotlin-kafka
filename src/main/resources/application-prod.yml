@@ -17,3 +17,5 @@ spring:
       host: host.docker.internal
       database: kafka
       port: 27017
+    custom:
+      host: "https://menofsillim.club"

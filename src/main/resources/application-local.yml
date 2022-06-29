@@ -17,3 +17,5 @@ spring:
       host: localhost
       database: kafka
       port: 27017
+    custom:
+      host: "http://localhost:30010"
