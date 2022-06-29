@@ -10,7 +10,7 @@ class CorsConfiguration : WebMvcConfigurer{
     override
     fun addCorsMappings(registry: CorsRegistry) {
         registry.addMapping("/**")
-            .allowedOrigins("https://kafka.menofsillim.club")
+            .allowedOrigins("http://localhost:30010")
             .allowedMethods(
                 HttpMethod.GET.name,
                 HttpMethod.POST.name,

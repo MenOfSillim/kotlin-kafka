@@ -17,6 +17,3 @@ spring:
       host: localhost
       database: kafka
       port: 27017
-management:
-  server:
-    base-path: "/"
