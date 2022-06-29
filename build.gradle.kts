@@ -33,14 +33,17 @@ dependencies {
 
     annotationProcessor("org.springframework.boot:spring-boot-configuration-processor")
 
-
     // Open-API : Swagger
-    implementation("io.springfox:springfox-swagger-ui:3.0.0")
-    implementation("io.springfox:springfox-boot-starter:3.0.0")
+    // https://mvnrepository.com/artifact/org.springdoc/springdoc-openapi-kotlin
+    implementation("org.springdoc:springdoc-openapi-kotlin:1.6.6")
+    implementation("org.springdoc:springdoc-openapi-ui:1.6.6")
 
-//    // Lombok
-//    compileOnly("org.project-lombok:lombok")
-//    annotationProcessor("org.project-lombok:lombok")
+
+    // prometheus
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+    implementation("org.springframework.boot:spring-boot-starter-actuator")
+    // https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+    runtimeOnly("io.micrometer:micrometer-registry-prometheus")
 
     // Test
     testImplementation("org.springframework.boot:spring-boot-starter-test")

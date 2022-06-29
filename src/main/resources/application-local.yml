@@ -8,7 +8,7 @@ spring:
     consumer:
       bootstrap-servers: localhost:9092
       group-id: common-listener-id
-    bootstrap-servers: localhost:19092
+    bootstrap-servers: localhost:9092
   data:
     mongodb:
       username: menofsillim
@@ -17,5 +17,4 @@ spring:
       host: localhost
       database: kafka
       port: 27017
-  exposedHost: localhost:20010
 
