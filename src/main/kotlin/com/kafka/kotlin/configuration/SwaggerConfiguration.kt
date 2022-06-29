@@ -23,7 +23,6 @@ class SwaggerConfiguration {
                              .pathsToMatch("/**")
                              .build()
     }
-
     @Bean
     fun openAPI(): OpenAPI? {
         return OpenAPI().info(Info()
