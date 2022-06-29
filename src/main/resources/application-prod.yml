@@ -18,4 +18,4 @@ spring:
       database: kafka
       port: 27017
     custom:
-      host: "https://menofsillim.club"
+      host: "https://kafka.menofsillim.club"
